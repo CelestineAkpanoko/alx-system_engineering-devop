@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -cmta .*/
+ls -map
