@@ -1,1 +1,1 @@
-#Still on this readme thing lol
+## This project is about shell and devops
