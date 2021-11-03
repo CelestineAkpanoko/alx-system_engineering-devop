@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Show attached IPs
+
+ifconfig | grep -F "Mask" | cut -d ":" -f 2 | cut -d " " -f 1
