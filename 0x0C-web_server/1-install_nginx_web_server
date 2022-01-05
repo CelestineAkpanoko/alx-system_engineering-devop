@@ -4,14 +4,14 @@
 apt-get update
 apt-get install -y nginx
 
-ech0 "Hello World!" > /var/www/html/index.html
+echo "Holberton School" > /var/www/html/index.html
 
-cp /etc/nginx/sites-avalaible/default /etc/ngnix/sites-avalable/default.bak
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
 printf %s "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
-	root /var/ww/html/;
+	root /var/www/html/;
 	index index.html index.htm;
 }
 " > /etc/nginx/sites-available/default
