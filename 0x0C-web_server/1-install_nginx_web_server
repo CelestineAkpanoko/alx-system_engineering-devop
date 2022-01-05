@@ -2,8 +2,10 @@
 # Install nginx server, it should listen to port 80.
 
 apt-get -y update
-apt-get -y upgrade
-apt-get -y install ngnx
-service nginx start
-echo "Hello World!" | tee /usr/share/nginx/html/index.html
-echo "Hello World!" | tee /var/ww/html/index.nginx-debian.html
+apt-get install nginx
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index.html
+chmod 755 /var/www/html/index.html
+
+service nginx restart
+
