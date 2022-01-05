@@ -2,18 +2,13 @@
 # Install nginx server, it should listen to port 80.
 
 apt-get update
-apt-get install -y nginx
-
-echo "Hello World!" > /var/www/html/index.html
-
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
-
-printf %s "server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	root /var/www/html/;
-	index index.html index.htm;
-}
-" > /etc/nginx/sites-available/default
-
-service nginx restart
+apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo mkdir -p /var/www/html
+sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start
+else
+	service nginx restart
+fi
