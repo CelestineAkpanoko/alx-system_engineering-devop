@@ -4,8 +4,12 @@
 apt-get -y update
 apt-get install nginx
 ufw allow 'Nginx HTTP'
+mkdir -p /var/www/html
+chmod -R 755 /var/www
 echo "Hello World!" > /var/www/html/index.html
-chmod 755 /var/www/html/index.html
-
-service nginx restart
+if [ "$(pgrep -c nginx)" -le 0]; then
+	service nginx start
+else
+	service nginx restart
+fi
 
