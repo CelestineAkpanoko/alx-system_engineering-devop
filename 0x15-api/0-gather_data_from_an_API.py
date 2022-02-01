@@ -16,7 +16,7 @@ if __name__ == '__main__':
         id = int(sys.argv[1])
         employee = requests.get('{}/users/{}'.format(API_URL, id)).json()
         todos = requests.get('{}/todos'.format(API_URL)).json()
-        total_todos = list(filter(lambda x: x.get('userId') == id, todos_res))
+        total_todos = list(filter(lambda x: x.get('userId') == id, todos))
         todos_completed = list(filter(lambda x: x.get('completed'), todos))
         print(
             'Employee {} is done with tasks({}/{}):'.format(
@@ -26,4 +26,4 @@ if __name__ == '__main__':
             )
         )
         for todos_com in todos_completed:
-            print('\t {}'.format(todo_completed.get('title')))
+            print('\t {}'.format(todos_completed.get('title')))
