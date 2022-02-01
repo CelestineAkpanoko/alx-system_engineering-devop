@@ -6,13 +6,24 @@
 import requests
 import sys
 
-if __name__ == "__main__":
-    api_url = 'https://jsonplaceholder.typicode.com/'
-    emp_id = sys.argv[1]
-    employee = requests.get(api_url + 'user/{}'.format(emp_id)).json()
-    todos = requests.get(api_url + 'todos', params={'userId': emp_id}).json()
 
-    completed_task = [todo.get('title') for todo in todos if todo.get('completed') is True]
-    print('Employee {} is done with tasks({}/{}):'.format(
-        employee.get('name'), len(completed_task), len(todos)))
-    [print('\t {}'.format(c)) for c in completed_task]
+API_URL = 'https://jsonplaceholder.typicode.com'
+'''The API's URL.'''
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        id = int(sys.argv[1])
+        employee = requests.get('{}/users/{}'.format(API_URL, id)).json()
+        todos = requests.get('{}/todos'.format(API_URL)).json()
+        total_todos = list(filter(lambda x: x.get('userId') == id, todos_res))
+        todos_completed = list(filter(lambda x: x.get('completed'), todos))
+        print(
+            'Employee {} is done with tasks({}/{}):'.format(
+                employee.get('name'),
+                len(todos_completed),
+                len(total_todos)
+            )
+        )
+        for todos_com in todos_completed:
+            print('\t {}'.format(todo_completed.get('title')))
